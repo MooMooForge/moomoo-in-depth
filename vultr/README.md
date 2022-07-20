@@ -1,30 +1,31 @@
 # Vultr Client
+
 This documentation includes information about the VultrClient that moomoo is using and the structure of it
 
-- [setup](#setting-up-the-vultrclient)
-    - [open a new Client](#opening-a-new-vultr-client)
-    - [generate recaptcha token](#generating-a-recaptcha-token)
-    - [setup WS URL](#setting-up-the-websocket-url)
-    - [create WS](#creating-the-websocket)
+- [Setup](#setting-up-the-vultrclient)
+  - [Open a new Client](#opening-a-new-vultr-client)
+  - [Generate ReCaptcha token](#generating-a-recaptcha-token)
+  - [Setup WS URL](#setting-up-the-websocket-url)
+  - [create WS](#creating-the-websocket)
 - [Structure](#structure-of-the-vultrclient)
-    - [Constructor](#constructor-of-vultrclient)
-    - [Start](#starting-the-client)
-    - [Parse Server Query](#starting-the-client)
-    - [Find Server](#find-server)
-    - [Seek Server](#seek-server)
-    - [Connect to Server](#connect-to-server)
-    - [Get Server Address](#get-server-address)
-    - [Process Servers](#process-servers)
-    - [ipToHex](#iptohex)
-    - [hashIP](#haship)
-    - [Generate Href](#generate-href)
+  - [constructor](#constructor)
+  - [Start](#starting-the-client)
+  - [Parse Server Query](#starting-the-client)
+  - [Find Server](#find-server)
+  - [Seek Server](#seek-server)
+  - [Connect to Server](#connect-to-server)
+  - [Get Server Address](#get-server-address)
+  - [Process Servers](#process-servers)
+  - [ipToHex](#iptohex)
+  - [hashIP](#haship)
+  - [Generate Href](#generate-href)
 
-
-# Setting up the VultrClient 
+# Setting up the VultrClient
 
 ## opening a new Vultr Client
 
 Opening a new VultrClient on moomooio would look something similar to that
+
 ```js
 let client = new VultrClient("moomoo.io", 3000, config.maxPlayers, 5, false);
 ```
@@ -35,7 +36,7 @@ You can find more information about those in the Structure section.
 
 ---
 
-## Generating a recaptcha token
+## Generating a ReCaptcha token
 
 Before we can start creating WebSockets, we need to generate a recaptcha token with MooMoo's recaptcha API token.
 
@@ -65,8 +66,6 @@ var wsAddress = protocol + "://" + address + ":" + 8008 + "/?gameIndex=" + gameI
 if (token) wsAddress += "&token=" + encodeURIComponent(token);
 ```
 
-
-
 ## Creating the WebSocket
 
 MooMoo uses its own io client to create the WebSocket.
@@ -88,7 +87,7 @@ function pingSocket() {
 
 It then creates an interval which calls the pingSocket function every 2.5 seconds.
 
-if the callback function gets called with an error, the gameUI gets cleared and the WebSocket is most likely closed.
+If the callback function gets called with an error, the gameUI gets cleared and the WebSocket is most likely closed.
 
 ```js
 function disconnect(reason) {
@@ -97,27 +96,9 @@ function disconnect(reason) {
 }
 ```
 
-now, lets see the final code:
-
-```js
-io.connect(wsAddress, function (error) {
-    pingSocket();
-    setInterval(() => pingSocket(), 2500);
-
-    if (error) {
-        disconnect(error);
-    } else {
-        connected = true;
-        startGame();
-    }
-}, {
-    "pp": pingSocketResponse
-});
-```
-
 # Structure of the VultrClient
 
-## Constructor of VultrClient
+## Constructor
 
 The first argument is the base url of the server, which is the url of the server that the client is connecting to. When you pass in localhost, it will redirect to "127.0.0.1", because the server manager uses that as the home url.
 
@@ -125,16 +106,15 @@ Set `this.debugLog` to true to see the debug logs of the client.
 
 The rest of the arguments are base data that is used later on.
 
-
 ```js
 class VultrClient {
     constructor(baseUrl, devPort, lobbySize, lobbySpread, rawIPs) {
         if (location.hostname == "localhost") {
             window.location.hostname = "127.0.0.1";
         }
-    
+
         this.debugLog = false;
-    
+
         this.baseUrl = baseUrl;
         this.lobbySize = lobbySize;
         this.devPort = devPort;
@@ -143,6 +123,7 @@ class VultrClient {
     }
 }
 ```
+
 ---
 
 ## Starting the client
@@ -180,7 +161,7 @@ It then parse the server string into an array.
 
 The arguments that are passed in are the region and index.
 
-it first find the server that matches the region, then we find the server that matches the index.
+It first find the server that matches the region, then we find the server that matches the index.
 
 If the region isn't found, it returns the error callback.
 If the index isn't found, it returns nothing.
@@ -191,11 +172,11 @@ If the index isn't found, it returns nothing.
 
 This function gets called when a server is either full or not found.
 
-it first define configurations for the server, which are the game mode, max players and lobby spread.
+It first define configurations for the server, which are the game mode, max players and lobby spread.
 
-it then gets a list with all of the servers that are in the same region as the server we are seeking, and We filter it to only include servers that are not full or private / unavailable.
+It then gets a list with all of the servers that are in the same region as the server we are seeking, and We filter it to only include servers that are not full or private / unavailable.
 
-it then maps the servers to `{regio, index, gameIndex, gameCount, playerCount, isPrivate}` where index is From 0 to (total servers * games per server).
+It then maps the servers to `{regio, index, gameIndex, gameCount, playerCount, isPrivate}` where index is From 0 to (total servers \* games per server).
 
 By doing that, it can decompose the index again later to find the server and game index.
 
@@ -203,7 +184,7 @@ Then it filters out private servers and servers that are full.
 
 If there are no servers left, it return the error callback.
 
-It then picks a random server from the list, by getting `lobbySpread` which defines how many servers we want to spread out for. 
+It then picks a random server from the list, by getting `lobbySpread` which defines how many servers we want to spread out for.
 
 ```js
 var randomSpread = Math.min(lobbySpread, servers.length);
@@ -212,19 +193,20 @@ serverIndex = Math.min(serverIndex, servers.length - 1);
 var rawServer = servers[serverIndex];
 ```
 
-then It extracts the information from the raw server.
+Then It extracts the information from the raw server.
 
 ```js
 var serverRegion = rawServer.region;
 var serverIndex = Math.floor(rawServer.index / rawServer.gameCount);
 var gameIndex = rawServer.index % rawServer.gameCount;
-this.log("Found server.");
 ```
+
 ---
+
 ## Connect to Server
 
 First of all, MooMoo needs to make sure that the client is not already connected to a server.
-It Also check if the server is private or full.
+It Also checks if the server is private or full.
 
 After saving the server information, we call the callback function.
 
@@ -242,7 +224,7 @@ This function takes 2 arguments, the ip an argument that determines if we want t
 
 ## Process Servers
 
-this function takes a list of servers and processes, sorts and saves them.
+This function takes a list of servers and processes, sorts and saves them.
 
 ## ipToHex
 
@@ -252,7 +234,7 @@ MooMoo uses the IP adress of a server to convert it into a hexadecimal string.
 static ipToHex(ip) {
     const encoded = ip.split(".")
         .map((component) =>
-            ("00" + parseInt(component).toString(16)) 
+            ("00" + parseInt(component).toString(16))
             .substr(-2)
         )
         .join("")
