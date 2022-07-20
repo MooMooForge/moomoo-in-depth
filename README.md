@@ -14,6 +14,7 @@ It's not just about the client, but also about vulnerabillities and other stuff,
   - [canvas](rendering/canvas/)
 - [Vulnerabilities](vulnerabilities/)
   - [force-connect](vulnerabilities/force-connect)
+  - [upgradebar-issues](vulnerabilities/upgradebar-issues)
 - [Vultr](vultr/)
   - [io-client](vultr/io_client.md)
 
