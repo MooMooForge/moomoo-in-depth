@@ -3,7 +3,7 @@
 This documentation includes information about the VultrClient that moomoo is using and the structure of it
 
 - [Setup](#setting-up-the-vultrclient)
-  - [Open a new Client](#opening-a-new-vultr-client)
+  - [Open a new VultrClient](#opening-VultrClient)
   - [Generate ReCaptcha token](#generating-a-recaptcha-token)
   - [Setup WS URL](#setting-up-the-websocket-url)
   - [create WS](#creating-the-websocket)
@@ -22,17 +22,15 @@ This documentation includes information about the VultrClient that moomoo is usi
 
 # Setting up the VultrClient
 
-## opening a new Vultr Client
+## Opening VultrClient
 
-Opening a new VultrClient on moomooio would look something similar to that
+You can open a VultrClient just like this:
 
 ```js
 let client = new VultrClient("moomoo.io", 3000, config.maxPlayers, 5, false);
 ```
 
-It takes 5 arguments, which are `baseUrl, devPort, lobbySize, lobbySpread, rawIPs`.
-
-You can find more information about those in the Structure section.
+Constructor takes 5 arguments, `baseUrl`, `devPort`, `lobbySize`, `lobbySpread` and `rawIPs`.
 
 ---
 
@@ -42,10 +40,9 @@ Before we can start creating WebSockets, we need to generate a recaptcha token w
 
 ```js
 let token = "6LevKusUAAAAAAFknhlV8sPtXAk5Z5dGP5T2FYIZ";
-
-window.grecaptcha.execute(token, {action: "homepage"}).then(function(token) {
+window.grecaptcha.execute(token, { action: "homepage" }).then(function(token) {
     connectWS(token)
-});
+})
 ```
 
 ---
@@ -54,11 +51,11 @@ window.grecaptcha.execute(token, {action: "homepage"}).then(function(token) {
 
 MooMoo starts the VultrClient and configures the WebSocket inside of callback function (first argument of the start function). This callback function is called when the VultrClient is ready to start.
 
-The callback function takes 3 arguments, which are `adress, port, gameIndex`.
+The callback function takes 3 arguments, which are `address`, `port` and `gameIndex`.
 
-To create a valid WebSocket url, it takes the protocol, adress and gameindex.
+To create a valid WebSocket url, it takes the protocol, address and gameindex.
 
-MooMoo also checks if `location.hostname` is not a localhost adress, if it is the `isProd` variable gets set to true.
+Moomoo also checks if `location.hostname` is not a localhost address, if it is the `isProd` variable gets set to true.
 
 ```js
 var protocol = isProd ? "wss" : "ws";
@@ -72,7 +69,7 @@ MooMoo uses its own io client to create the WebSocket.
 
 You can read more about it [here](./io_client.md)
 
-The connect function takes 3 arguments, which are the adress of the websocket, a callback function which gets called when the websocket is connected or when an error occurs, and a `events` Object which includes all the events that the websocket should listen to.
+The connect function takes 3 arguments, which are the address of the websocket, a callback function which gets called when the websocket is connected or when an error occurs, and `events` Object which includes all the events that the websocket should listen to.
 
 (more about events and the websocket protocol [here](../protocol))
 
