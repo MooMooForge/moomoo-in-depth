@@ -109,4 +109,4 @@ socketReady: function() {
 
 ## close
 
-this function closes the socket.
+This function closes the socket.
