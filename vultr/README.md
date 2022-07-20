@@ -1,5 +1,3 @@
-
-
 # Vultr Client
 This documentation includes information about the VultrClient that moomoo is using and the structure of it
 
