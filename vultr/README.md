@@ -173,7 +173,7 @@ It first define configurations for the server, which are the game mode, max play
 
 It then gets a list with all of the servers that are in the same region as the server we are seeking, and We filter it to only include servers that are not full or private / unavailable.
 
-It then maps the servers to `{regio, index, gameIndex, gameCount, playerCount, isPrivate}` where index is From 0 to (total servers \* games per server).
+It then maps the servers to `{region, index, gameIndex, gameCount, playerCount, isPrivate}` where index is From 0 to (total servers \* games per server).
 
 By doing that, it can decompose the index again later to find the server and game index.
 
