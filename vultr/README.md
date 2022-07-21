@@ -28,10 +28,6 @@ You can open a VultrClient just like this:
 
 ```js
 let client = new VultrClient("moomoo.io", 3000, config.maxPlayers, 5, false);
-```
-
-Constructor takes 5 arguments, `baseUrl`, `devPort`, `lobbySize`, `lobbySpread` and `rawIPs`.
-
 ---
 
 ## Generating a ReCaptcha token
@@ -96,6 +92,8 @@ function disconnect(reason) {
 # Structure of the VultrClient
 
 ## Constructor
+
+Constructor takes 5 arguments, `baseUrl`, `devPort`, `lobbySize`, `lobbySpread` and `rawIPs`.
 
 The first argument is the base url of the server, which is the url of the server that the client is connecting to. When you pass in localhost, it will redirect to "127.0.0.1", because the server manager uses that as the home url.
 
