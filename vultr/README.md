@@ -28,6 +28,7 @@ You can open a VultrClient just like this:
 
 ```js
 let client = new VultrClient("moomoo.io", 3000, config.maxPlayers, 5, false);
+```
 ---
 
 ## Generating a ReCaptcha token
