@@ -52,7 +52,7 @@ The callback function takes 3 arguments, which are `address`, `port` and `gameIn
 
 To create a valid WebSocket url, it takes the protocol, address and gameindex.
 
-Moomoo also checks if `location.hostname` is not a localhost address, if it is the `isProd` variable gets set to true.
+Moomoo also checks if `location.hostname` is not a localhost address, if the `isProd` variable gets set to true.
 
 ```js
 var protocol = isProd ? "wss" : "ws";
