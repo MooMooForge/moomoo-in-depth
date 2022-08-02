@@ -42,6 +42,14 @@ window.grecaptcha.execute(token, { action: "homepage" }).then(function(token) {
 })
 ```
 
+this recaptcha token is neccessary to create a WebSocket connection. It's used to verify that the user is a human.
+
+In the WebSocket URL, you can find the token in the query string.
+
+A token with less than 500 Characters gets returned if the user failed to verify as a human, for example too much tokens have been generated in a short time.
+
+
+
 ---
 
 ## Setting up the WebSocket URL
