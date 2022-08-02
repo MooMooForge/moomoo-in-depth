@@ -45,6 +45,9 @@ You can think of it like this:
 // original Array
 [["key", "value"], ["key", "value"]]
 
+// convert the array into a flap mapped format:
+[array].flatMap(x => x);
+
 // flat mapped Arrat
 ["key", "value", "key", "value"]
 ```
