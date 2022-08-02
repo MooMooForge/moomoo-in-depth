@@ -15,8 +15,6 @@ You find all incoming packet types [here](./server/README.md).
 
 ## Basic Packet Structure
 
----
-
 The packet structure is easy and similar to socket.io packets.
 
 The Packet is an Array, with the first item being the packet type.
