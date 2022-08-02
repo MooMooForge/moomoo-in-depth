@@ -35,7 +35,5 @@ For example, the following packet would send a message to the server:
 
 Its the same for incoming packets.
 
-
-
-
+## Flat Maps
 
