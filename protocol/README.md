@@ -37,6 +37,8 @@ Its the same for incoming packets.
 
 ## Flat Maps
 
+https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap
+
 Flat maps are used to convert the incoming packet data to a more usable format.
 
 You can think of it like this:
@@ -51,7 +53,6 @@ You can think of it like this:
 
 Its used in some of the incoming packets
 
-https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap
 
 to deal with this, you need to first identify how long the original arrays are. If you figured that out, you can use a loop to get the original arrays.
 
