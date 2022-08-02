@@ -2,15 +2,11 @@
 
 There are 36 incoming packet types, and I will go through them one by one.
 
----
-
 ## Packet handling
 
 As I already said, MooMoo.io has an Object with all incoming packet types.
 
 see more [here](../../vultr/README.md)
-
----
 
 # Packet types
 
