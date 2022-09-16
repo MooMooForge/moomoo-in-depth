@@ -18,8 +18,6 @@ It's not just about the client, but also about vulnerabillities and other stuff,
 - [Vultr](vultr/)
   - [io-client](vultr/io_client.md)
 
-We are still in active Development, so if you have any Information you'd like to contribute, pull request.
-
 # Contributors
 
 <a href="https://github.com/NuroC/moomoo-in-depth/graphs/contributors">
