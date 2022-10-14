@@ -33,37 +33,46 @@ For example, the following packet would send a message to the server:
 
 Its the same for incoming packets.
 
-## Flat Maps
+## Chunk Arrays
 
-https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap
+Chunk arrays are arrays that contain multiple data packs, for example 3 player data packs.
 
-Flat maps are used to convert the incoming packet data to a more usable format.
+They are used for sending multiple data packs at once, to reduce the amount of packets sent.
 
-You can think of it like this:
-
+Example:
 ```js
 // original Array
-[["key", "value"], ["key", "value"]]
+[["key", "value"], ["key", "value"]] // 36 bytes
 
-// convert the array into a flap mapped format:
-[array].flatMap(x => x);
-
-// flat mapped Arrat
-["key", "value", "key", "value"]
+// chunked Array
+["key", "value", "key", "value"] // 32 bytes
 ```
 
-Its used in some of the incoming packets
+## How to use
 
+To convert chunks to an array, it is necessary that you know the size of each chunk.
 
-to deal with this, you need to first identify how long the original arrays are. If you figured that out, you can use a loop to get the original arrays.
+We use a for loop to iterate through the array while repeatedly slicing chunks of the specified size using the `Array.prototype.slice()` method. You can increase the iterator by the specified size on each iteration so as to start each new group after the previous one ended:
 
 ```js
-let array = ["key", "value", "key", "value"];
-
-for(let i = 0; i < array.length;) {
-    let key = array[i];
-    let value = array[i + 1];
-
-    i += 2;
+function chunkArray(array, size) {
+  let result = []
+  for (let i = 0; i < array.length; i += size) {
+    let chunk = array.slice(i, i + size)
+    result.push(chunk)
+  }
+  return result
 }
 ```
+
+To convert a array to a chunk, we use the `Array.prototype.concat()` method to merge the arrays into one:
+```js
+function unchunkArray(array, chunksize) {
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+        result = result.concat(array[i])
+    }
+    return result
+}
+```
+
