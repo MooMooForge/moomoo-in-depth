@@ -48,7 +48,8 @@ In the WebSocket URL, you can find the token in the query string.
 
 A token with less than 500 Characters gets returned if the user failed to verify as a human, for example too much tokens have been generated in a short time.
 
-
+you can read more about recaptcha's API here:
+https://developers.google.com/recaptcha/docs/v3
 
 ---
 
