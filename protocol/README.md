@@ -24,9 +24,9 @@ For example, the following packet would send a message to the server:
 
 ```js
 [
-    "message",
+    "packetID",
     [
-        "Hello World!"
+        "data"
     ]
 ]
 ```
