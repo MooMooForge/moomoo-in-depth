@@ -21,4 +21,4 @@ Object.defineProperty(WebSocket.prototype, "onmessage", {
 });
 
 // I have not included the decoding for the packets, you can do that on your own.
-// Here's the decoding format if you dont know: [add later]
+// Here's the decoding format if you dont know: https://github.com/NuroC/moomoo-in-depth/blob/main/protocol/ws%20handler/io-client.md#decoding
