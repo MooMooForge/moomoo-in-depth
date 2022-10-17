@@ -97,3 +97,5 @@ let tosend = new Uint8Array(encoded);
 
 ws.send(tosend);
 ```
+
+I have prepared a script that sends a chat packet [here](./example-scripts/example4.js) 
