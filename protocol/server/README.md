@@ -55,15 +55,15 @@ going add explanation to each packet soon.
 
 # Packets explanation
 
----
 
 ## setInitData
+Nothing much to talk about this one, it receives an object of all current teams on the server.
 
----
 
 ## disconnect
 
----
+This packet gets called when there's either a server error or client error, the WS gets closed on this packet.
+
 
 ## setupGame
 
