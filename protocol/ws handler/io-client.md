@@ -80,4 +80,20 @@ if(type == "33") {
 I have prepared a script thhat utilizes the chunked player packet [here](./example-scripts/example3.js)
 
 ## Encoding
-todo
+
+The sending packet structure is the same as the incoming packet structure.
+
+To encode packets, we first encode the packet with msgpack, and then we create a new `Uint8Array` from the encoded packet.
+
+We then send the `Uint8Array` to the server.
+
+It should look something like this:
+
+```js
+let packet = ["ch", ["Message"]]
+let encoded = msgpack.encode(packet);
+
+let tosend = new Uint8Array(encoded);
+
+ws.send(tosend);
+```
