@@ -4,7 +4,7 @@ There are 16 outgoing packets, I will go over them one by one.
 | Packet Name            	| Packet ID 	| Usage                                                 	|
 |------------------------	|-----------	|-------------------------------------------------------	|
 | Mouse / Space attack   	| c         	| 0/1, angle                                            	|
-| Swing Animation          	| 7         	| playerSID, isHitting, weaponIndex                     	|
+| Auto Attack           	| 7         	| 0/1, angle                    	|
 | Send Chat              	| ch        	| Text                                                  	|
 | Clan Accept player     	| 11        	| playerSID                                             	|
 | create clan            	| 8         	| ClanName                                              	|
@@ -21,6 +21,6 @@ There are 16 outgoing packets, I will go over them one by one.
 
 
 
-more coming soon
+
 
 
