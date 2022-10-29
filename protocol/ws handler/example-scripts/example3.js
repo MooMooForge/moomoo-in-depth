@@ -12,28 +12,29 @@
 function chunkArray(array, size) {
     let result = []
     for (let i = 0; i < array.length; i += size) {
-      let chunk = array.slice(i, i + size)
-      result.push(chunk)
+        let chunk = array.slice(i, i + size)
+        result.push(chunk)
     }
     return result
-  }
-  
-  let onmessagesetter = Object.getOwnPropertyDescriptor(WebSocket.prototype, "onmessage").set;
-  
-  Object.defineProperty(WebSocket.prototype, "onmessage", {
-      set: function (callback) {
-          onmessagesetter.call(this, function (event) {
-              
-              let data = new Uint8Array(event.data)
-              let parsed = msgpack.decode(data)
-              
-              let [type, [...args]] = parsed;
-  
-              if (type == "33") {
-                  let players = chunkArray(args[0], 13)
-              }
-              
-              callback(event);
-          });
-      }
-  });
+}
+
+let onmessagesetter = Object.getOwnPropertyDescriptor(WebSocket.prototype, "onmessage").set;
+
+Object.defineProperty(WebSocket.prototype, "onmessage", {
+    set: function (callback) {
+        onmessagesetter.call(this, function (event) {
+
+            let data = new Uint8Array(event.data)
+            let parsed = msgpack.decode(data)
+
+            let [type, [...args]] = parsed;
+
+            if (type == "33") {
+                let players = chunkArray(args[0], 13)
+            }
+
+            callback(event);
+        });
+    }
+});
+
