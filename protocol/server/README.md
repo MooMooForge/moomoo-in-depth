@@ -37,7 +37,7 @@ see more [here](../../vultr/README.md)
 | [addProjectile](#addprojectile)        	| 18        	| x, y, dir, range, speed, index, layer, sid                                                                                	|
 | [remProjectile](#remprojectile)        	| 19        	| sid, range                                                                                                                	|
 | [serverShutdownNotice](#servershutdownnotice) 	| 20        	| countdown                                                                                                                 	|
-| [addAliance](#addaliance)           	| ac        	| {sid: clanName, owner: sidOfOwner}                                                                                        	|
+| [addAlliance](#addaliance)           	| ac        	| {sid: clanName, owner: sidOfOwner}                                                                                        	|
 | [deleteAlliance](#deletealliance)       	| ad        	| sid                                                                                                                       	|
 | [allianceNotification](#alliancenotification) 	| an        	| sid, name                                                                                                                 	|
 | [setPlayerTeam](#setplayerteam)        	| st        	| team, isOwner                                                                                                             	|
