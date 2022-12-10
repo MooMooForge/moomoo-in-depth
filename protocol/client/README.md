@@ -18,7 +18,7 @@ There are 16 outgoing packets, I will go over them one by one.
 | set angle              	| 2         	| angle                                                 	|
 | Spawn Player           	| sp        	| {name: "playername", moofoll: true/false, skin: 0-9 } 	|
 | window focus           	| rmd       	| none                                                  	|
-
+| send movement          	| 33        	| [0/-1, 0/-1] or [angle in radians                      	|
 
 
 
@@ -91,5 +91,34 @@ Moofoll is a boolean, true when you want 100+ resources when you spawm, false wh
 ### window focus
 
 sent when the window is focused. no args.
+
+### send movement
+
+sent when a user presses a key. In the default moomoo.io bundle, the packet is being used with a few configuration keys:
+
+```js
+var moveKeys = {
+    87: [0, -1],
+    38: [0, -1],
+    83: [0, 1],
+    40: [0, 1],
+    65: [-1, 0],
+    37: [-1, 0],
+    68: [1, 0],
+    39: [1, 0]
+};
+```
+
+each key has a different specification about where the player needs to move.
+
+Though, the packet also accepts angles in radians.
+
+For example, when I have another player's x and y coordinates, and i want to for example move into the direction of that enemy, it would look something like this:
+
+```js
+let angle = Math.atan2(enemy.y-myPlayer.y, enemy.x-myPlayer.x);
+// then pass the angle as an argument into the packet
+```
+
 
 
