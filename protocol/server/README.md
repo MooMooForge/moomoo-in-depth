@@ -110,7 +110,9 @@ also works the same as updatePlayers, but for objects.
 
 Its a chunked array with each chunk containing 8 values.
 
-`sid, x, y, dir, scale, idk, type, ownerSid`
+resource returns a number with the resource given by the object if you hit it. null = player building, 0 = wood, 1 = food, 2 = stone, 3 = gold.
+
+`sid, x, y, dir, scale, resource, type, ownerSid`
 
 [MooMoo client source reference](https://github.com/NuroC/Moo-client-source/blob/main/app.js#L2682)
 
