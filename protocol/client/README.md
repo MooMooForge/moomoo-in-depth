@@ -1,5 +1,5 @@
 # Outgoing packets
-There are 16 outgoing packets, I will go over them one by one.
+There are 17 outgoing packets, I will go over them one by one.
 
 | Packet Name            	| Packet ID 	| Usage                                                 	|
 |------------------------	|-----------	|-------------------------------------------------------	|
@@ -18,8 +18,8 @@ There are 16 outgoing packets, I will go over them one by one.
 | set angle              	| 2         	| angle                                                 	|
 | Spawn Player           	| sp        	| {name: "playername", moofoll: true/false, skin: 0-9 } 	|
 | window focus           	| rmd       	| none                                                  	|
-| send movement          	| 33        	| [0/-1, 0/-1] or [angle in radians                      	|
-
+| send movement          	| 33        	| [0/-1, 0/-1] or [angle in radians]                        |
+| pingMap         	        | 14        	| 1                      	                                |
 
 
 # Explaining the packets
@@ -120,5 +120,7 @@ let angle = Math.atan2(enemy.y-myPlayer.y, enemy.x-myPlayer.x);
 // then pass the angle as an argument into the packet
 ```
 
+### pingMap
+sent when the user presses the key R. The only arg is 1.
 
 
