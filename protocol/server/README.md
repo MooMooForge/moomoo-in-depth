@@ -20,7 +20,7 @@ see more [here](../../vultr/README.md)
 | [updatePlayers](#updateplayers)        	| 33        	| id, x, y, dir, buildIndex, weaponIndex, weaponVariant, team, isLeader, skinIndex, tailIndex, iconIndex, zIndex, isVisible 	|
 | [updateLeaderboard](#updateleaderboard)   	| 5         	| sid, name, score, sid, name, score, sid, name, score                                                                      	|
 | [loadGameObject](#loadgameobject)       	| 6         	| sid, x, y, dir, scale, idk, type, ownerSid                                                                                	|
-| [loadAI](#loadai)               	| a         	| sid, type, x, y, dir, health, index                                                                                       	|
+| [loadAI](#loadai)               	| a         	| sid, type, x, y, dir, health, cowNameIndex                                                                                       	|
 | [animateAI](#animateai)            	| aa        	| sid                                                                                                                       	|
 | [gatherAnimation](#gatheranimation)      	| 7         	| sid, didHit, index                                                                                                        	|
 | [wiggleGameObject](#wigglegameobject)     	| 8         	| dir, sid                                                                                                                  	|
@@ -120,9 +120,11 @@ resource returns a number with the resource given by the object if you hit it. n
 
 works the same as AddPlayer, but for AI.
 
-its a chunked array with each chunk containing 8 values.
+its a chunked array with each chunk containing 7 values.
 
-`sid, type, x, y, dir, health`
+`sid, type, x, y, dir, health, cowNameIndex`
+
+with `cowNameIndex` pointing to a cowname within: ```["Sid","Steph","Bmoe","Romn","Jononthecool","Fiona","Vince","Nathan","Nick","Flappy","Ronald","Otis","Pepe","Mc Donald","Theo","Fabz","Oliver","Jeff","Jimmy","Helena","Reaper","Ben","Alan","Naomi","XYZ","Clever","Jeremy","Mike","Destined","Stallion","Allison","Meaty","Sophia","Vaja","Joey","Pendy","Murdoch","Theo","Jared","July","Sonia","Mel","Dexter","Quinn","Milky"]```
 
 [MooMoo client source reference](https://github.com/NuroC/Moo-client-source/blob/main/app.js#L2728)
 
